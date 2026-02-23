@@ -11,10 +11,7 @@ Handles all the math:
 import math
 from models import Location, Assignment, Order, TIER_CONFIG
 
-
-# ──────────────────────────────────────────────
 # Distance & Travel Time
-# ──────────────────────────────────────────────
 
 def calculate_distance(loc1: Location, loc2: Location) -> float:
     """Euclidean distance in km between two grid points."""
@@ -27,10 +24,7 @@ def calculate_travel_time(distance_km: float, speed_kmh: float) -> float:
         return float("inf")
     return (distance_km / speed_kmh) * 60
 
-
-# ──────────────────────────────────────────────
 # Perishability Decay
-# ──────────────────────────────────────────────
 
 def calculate_delivered_value(
     base_value: float,
@@ -74,10 +68,7 @@ def calculate_delivered_value(
 
     return base_value  # fallback
 
-
-# ──────────────────────────────────────────────
 # Operational Cost
-# ──────────────────────────────────────────────
 
 COST_PER_KM = 1.50  # fuel + wear, dollars per km
 
@@ -86,9 +77,7 @@ def calculate_cost(distance_km: float) -> float:
     return distance_km * COST_PER_KM
 
 
-# ──────────────────────────────────────────────
 # Fleet Score (composite metric)
-# ──────────────────────────────────────────────
 
 def calculate_fleet_score(
     assignments: list[Assignment],

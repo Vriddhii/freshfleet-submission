@@ -9,10 +9,7 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
-
-# ──────────────────────────────────────────────
 # Perishability Tier Configuration
-# ──────────────────────────────────────────────
 
 TIER_CONFIG = {
     "P1": {
@@ -42,9 +39,7 @@ TIER_CONFIG = {
 }
 
 
-# ──────────────────────────────────────────────
 # Core Models
-# ──────────────────────────────────────────────
 
 class Location(BaseModel):
     """A point on our 20km x 20km city grid."""

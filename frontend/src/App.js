@@ -20,7 +20,7 @@ const ZONES = [
   { name: 'Suburbs S', x: 6, y: 3, color: '#ef4444' },
 ];
 
-// ─── SVG Map ───
+// SVG Map
 function FleetMap({ scenario, assignments, selectedAlgo }) {
   const [hovered, setHovered] = useState(null);
   const [tipPos, setTipPos] = useState({ x: 0, y: 0 });
@@ -131,7 +131,7 @@ function FleetMap({ scenario, assignments, selectedAlgo }) {
   );
 }
 
-// ─── Assignment List ───
+// Assignment List
 function AssignmentList({ assignments, unassignedIds, orders }) {
   if (!assignments) return null;
   const oLookup = {};
@@ -179,7 +179,7 @@ function AssignmentList({ assignments, unassignedIds, orders }) {
   );
 }
 
-// ─── Metrics Table ───
+// Metrics Table
 function MetricsTable({ averages }) {
   if (!averages) return null;
   const metrics = [
@@ -217,7 +217,7 @@ function MetricsTable({ averages }) {
   );
 }
 
-// ─── Radar Chart (improved scaling) ───
+// Radar Chart (improved scaling)
 function TradeoffRadar({ averages }) {
   if (!averages) return null;
   const g = averages.greedy, h = averages.hungarian, a = averages.auction;
@@ -280,7 +280,7 @@ function TradeoffRadar({ averages }) {
   );
 }
 
-// ─── Heatmap (improved colors) ───
+// Heatmap (improved colors)
 function SeedHeatmap({ multiData }) {
   if (!multiData) return null;
   const algos = ['greedy', 'hungarian', 'auction'];
@@ -343,7 +343,7 @@ function SeedHeatmap({ multiData }) {
   );
 }
 
-// ─── Key Findings ───
+// Key Findings
 function KeyFindings({ averages }) {
   if (!averages) return null;
   const g = averages.greedy, h = averages.hungarian, a = averages.auction;
@@ -371,7 +371,7 @@ function KeyFindings({ averages }) {
   );
 }
 
-// ─── Main App ───
+// Main App
 function App() {
   const [singleData, setSingleData] = useState(null);
   const [multiData, setMultiData] = useState(null);

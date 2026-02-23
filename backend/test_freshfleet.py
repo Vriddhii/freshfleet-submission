@@ -36,10 +36,7 @@ from algorithms.greedy import run_greedy
 from algorithms.hungarian import run_hungarian
 from algorithms.auction import run_auction
 
-
-# ──────────────────────────────────────────────
 # Fixtures
-# ──────────────────────────────────────────────
 
 @pytest.fixture
 def base_time():
@@ -81,11 +78,7 @@ def sample_order(base_time):
 def scenario_seed42():
     return generate_scenario(seed=42)
 
-
-# ──────────────────────────────────────────────
 # 1. Model Tests
-# ──────────────────────────────────────────────
-
 class TestModels:
     def test_location_creation(self):
         loc = Location(x=3.5, y=7.2)
@@ -111,11 +104,7 @@ class TestModels:
             assert "tier_weight" in tier
             assert "max_transit_minutes" in tier
 
-
-# ──────────────────────────────────────────────
 # 2. Scoring Tests
-# ──────────────────────────────────────────────
-
 class TestDistance:
     def test_same_point(self):
         loc = Location(x=5.0, y=5.0)
@@ -244,11 +233,7 @@ class TestFleetScore:
         assert metrics["fleet_score"] == 0.0
         assert metrics["orders_fulfilled"] == 0
 
-
-# ──────────────────────────────────────────────
 # 3. Constraint Tests
-# ──────────────────────────────────────────────
-
 class TestCapacity:
     def test_within_capacity(self, sample_truck, sample_order):
         assert check_capacity(sample_truck, sample_order) is True
@@ -306,11 +291,7 @@ class TestSpoilageCutoff:
         """P1 with extreme overtime → >90% loss → rejected."""
         assert check_spoilage_cutoff(200, sample_order) is False
 
-
-# ──────────────────────────────────────────────
 # 4. Algorithm Tests
-# ──────────────────────────────────────────────
-
 class TestGreedy:
     def test_returns_result(self, scenario_seed42):
         result = run_greedy(scenario_seed42)
@@ -399,11 +380,7 @@ class TestAuction:
         assert result.metrics["orders_fulfilled"] == len(result.assignments)
         assert result.metrics["orders_fulfilled"] + len(result.unassigned_order_ids) == result.metrics["total_orders"]
 
-
-# ──────────────────────────────────────────────
 # 5. Integration Tests
-# ──────────────────────────────────────────────
-
 class TestIntegration:
     """Cross-cutting tests that verify the whole pipeline."""
 
@@ -474,11 +451,7 @@ class TestIntegration:
         scores = {g.metrics["fleet_score"], h.metrics["fleet_score"], a.metrics["fleet_score"]}
         assert len(scores) > 1, "All algorithms produced identical fleet scores"
 
-
-# ──────────────────────────────────────────────
 # 6. Data Generator Tests
-# ──────────────────────────────────────────────
-
 class TestDataGenerator:
     def test_correct_counts(self, scenario_seed42):
         assert len(scenario_seed42.trucks) == 15
@@ -506,11 +479,7 @@ class TestDataGenerator:
         s2 = generate_scenario(seed=77)
         assert s1.orders[0].base_value != s2.orders[0].base_value
 
-
-# ──────────────────────────────────────────────
 # 7. API Tests
-# ──────────────────────────────────────────────
-
 class TestAPI:
     @pytest.fixture(autouse=True)
     def setup_client(self):

@@ -28,10 +28,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-# ──────────────────────────────────────────────
 # Endpoints
-# ──────────────────────────────────────────────
 
 @app.get("/api/health")
 def health():
